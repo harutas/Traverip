@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import DashboardPage from "./pages/DashboardPage";
+import HomePage from "./pages/HomePage";
+import RoomPage from "./pages/RoomPage";
+import NoMatch from "./pages/Nomatch";
+
+import Header from "./components/Header";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header />
+      {/* <!-- hero - start --> */}
+      <div className="bg-white pb-6 sm:pb-8 lg:pb-12">
+        <div className="max-w-screen-2xl px-4 md:px-8 mx-auto">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/room/:id" element={<RoomPage />} />
+            <Route path="*" element={<NoMatch />} />
+          </Routes>
+        </div>
+      </div>
+      {/* <!-- hero - end --> */}
+    </BrowserRouter>
   );
 }
 
