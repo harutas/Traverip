@@ -1,14 +1,32 @@
 import React from "react";
+
 // router
 import { Link } from "react-router-dom";
 
-// mui icon
-// import FlightRoundedIcon from "@mui/icons-material/FlightRounded";
+// mui
+import Box from "@mui/material/Box";
+import Avatar from "@mui/material/Avatar";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
 
 const Header = () => {
+  // アバターメニュー
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
   return (
     <header className="flex justify-between items-center py-4 md:py-4 mb-4 md:mb-4 xl:mb-8 bg-teal-200 px-4">
-      {/* <!-- logo - start --> */}
+      {/* <!-- logo --> */}
       <Link
         to={`/`}
         className="inline-flex items-center text-black-800 text-2xl md:text-3xl font-bold gap-2.5"
@@ -26,56 +44,43 @@ const Header = () => {
         </svg>
         TraveRip
       </Link>
-      {/* <!-- logo - end --> */}
 
-      {/* <!-- nav - start --> */}
-      <nav className="hidden lg:flex gap-12">
-        <Link to={`/`} className="text-indigo-500 text-lg font-semibold">
-          Home
-        </Link>
-        <Link
-          to={`/`}
-          className="text-gray-600 hover:text-indigo-500 active:text-indigo-700 text-lg font-semibold transition duration-100"
+      {/* Avatar */}
+      <Box sx={{ flexGrow: 0 }}>
+        <Tooltip title="Open settings">
+          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+          </IconButton>
+        </Tooltip>
+        <Menu
+          sx={{ mt: "45px" }}
+          id="menu-appbar"
+          anchorEl={anchorElUser}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={Boolean(anchorElUser)}
+          onClose={handleCloseUserMenu}
         >
-          Features
-        </Link>
-        <Link
-          to={`/`}
-          className="text-gray-600 hover:text-indigo-500 active:text-indigo-700 text-lg font-semibold transition duration-100"
-        >
-          Pricing
-        </Link>
-        <Link
-          to={`/`}
-          className="text-gray-600 hover:text-indigo-500 active:text-indigo-700 text-lg font-semibold transition duration-100"
-        >
-          About
-        </Link>
-      </nav>
-      {/* <!-- nav - end --> */}
+          <MenuItem dense onClick={handleCloseUserMenu}>
+            <Typography textAlign="center">Profile</Typography>
+          </MenuItem>
 
-      {/* <!-- buttons - start --> */}
-      <Link
-        to={`/`}
-        className="hidden lg:inline-block bg-gray-100 hover:bg-gray-200 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
-      >
-        Contact Sales
-      </Link>
+          <MenuItem dense onClick={handleCloseUserMenu}>
+            <Typography textAlign="center">Setting</Typography>
+          </MenuItem>
 
-      <button
-        type="button"
-        className="inline-flex items-center lg:hidden bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold rounded-lg gap-2 px-2.5 py-2"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-          <path
-            fillRule="evenodd"
-            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-            clipRule="evenodd"
-          />
-        </svg>
-        Menu
-      </button>
-      {/* <!-- buttons - end --> */}
+          <MenuItem dense onClick={handleCloseUserMenu}>
+            <Typography textAlign="center">Logout</Typography>
+          </MenuItem>
+        </Menu>
+      </Box>
     </header>
   );
 };

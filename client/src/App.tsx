@@ -1,6 +1,9 @@
 import React from "react";
+
+// router
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// pages
 import DashboardPage from "./pages/DashboardPage";
 import HomePage from "./pages/HomePage";
 import RoomPage from "./pages/RoomPage";
