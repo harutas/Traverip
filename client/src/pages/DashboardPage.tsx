@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { createTheme, ThemeProvider, Fab } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
 
 const DashboardPage = () => {
   const container = {
@@ -21,20 +19,6 @@ const DashboardPage = () => {
     visible: { opacity: 1, x: 0 },
     hidden: { opacity: 0, x: 200 },
   };
-
-  const fabStyle = {
-    position: "fixed",
-    bottom: 16,
-    right: 16,
-  };
-
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: "#99f6e4",
-      },
-    },
-  });
 
   return (
     <div className="bg-white pb-6 sm:pb-4 lg:pb-8">
@@ -161,11 +145,6 @@ const DashboardPage = () => {
           {/* <!-- article - end --> */}
         </motion.div>
       </div>
-      <ThemeProvider theme={theme}>
-        <Fab color="primary" aria-label="add" sx={fabStyle}>
-          <AddIcon />
-        </Fab>
-      </ThemeProvider>
     </div>
   );
 };
