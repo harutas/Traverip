@@ -1,38 +1,65 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  line-height: 1.3;
+}
+/* flex-schedul */
+.flex-schedule {
+  min-width: 300px;
+  max-width: 400px;
+  list-style: none;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.flex-schedule li {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
 }
 
-.App-link {
-  color: #61dafb;
+.flex-schedule .area {
+  padding: 10px;
+  display: block;
+  width: 100%;
+  border-left: 6px solid #ff0093;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.flex-schedule li .time {
+  display: inline-flex;
+  justify-content: flex-end;
+  flex-basis: 5em;
+  max-width: 5em;
+  margin-right: 1em;
+  margin-top: 30px;
+}
+
+.flex-schedule .sch_box {
+  position: relative;
+  min-height: 1em;
+  padding: 1em;
+  background: #ffd9e0;
+  border-radius: 6px;
+}
+
+.flex-schedule .sch_box::before {
+  content: "";
+  position: absolute;
+  left: -23px;
+  top: 20px;
+  background: #ff0093;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+
+.flex-schedule .sch_title {
+  font-weight: 700;
+}
+
+.flex-schedule .sch_tx {
+  font-size: 14px;
+  font-weight: normal;
 }
